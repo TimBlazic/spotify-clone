@@ -10,6 +10,7 @@ import {
   Pause,
 } from "lucide-react";
 import { Song } from "@/lib/spotifyApi";
+import Image from "next/image";
 
 interface PlayerProps {
   song: Song | null;
@@ -51,7 +52,11 @@ const Player = ({ song }: PlayerProps) => {
   return (
     <div className="h-20 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between px-4">
       <div className="flex items-center space-x-4">
-        <img src={song?.albumImageUrl} alt={song?.name} className="h-14 w-14" />
+        <Image
+          src={song?.albumImageUrl || ""}
+          alt={song?.name || ""}
+          className="h-14 w-14"
+        />
         <div>
           <p className="font-medium">{song ? song.name : "No song selected"}</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">

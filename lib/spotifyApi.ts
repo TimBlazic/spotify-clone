@@ -51,12 +51,19 @@ const searchSongs = async (term: string) => {
   const data = await response.json();
 
   if (data.tracks && data.tracks.items) {
-    return data.tracks.items.map((item: any) => ({
-      id: item.id,
-      name: item.name,
-      artists: item.artists,
-      albumImageUrl: item.album.images[0]?.url || "",
-    }));
+    return data.tracks.items.map(
+      (item: {
+        id: string;
+        name: string;
+        artists: Artist[];
+        album: { images: { url: string }[] };
+      }) => ({
+        id: item.id,
+        name: item.name,
+        artists: item.artists,
+        albumImageUrl: item.album.images[0]?.url || "",
+      })
+    );
   } else {
     console.error("Unexpected response structure:", data);
     return [];

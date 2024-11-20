@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import {
-  searchSongs,
-  getSpotifyToken,
-  getTrackDetails,
-} from "@/lib/spotifyApi";
-
+import { searchSongs, getTrackDetails } from "@/lib/spotifyApi";
+import Image from "next/image";
 interface Artist {
   name: string;
 }
@@ -78,7 +74,7 @@ const TopBar = ({ onSelectSong }: TopBarProps) => {
                 className="p-2 hover:bg-gray-200 cursor-pointer flex items-center"
                 onClick={() => handleSelectSong(song)}
               >
-                <img
+                <Image
                   src={song.albumImageUrl}
                   alt={song.name}
                   className="h-10 w-10 mr-2"
